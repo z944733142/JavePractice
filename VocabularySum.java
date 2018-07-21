@@ -5,6 +5,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+/*
+    单词统计，Map练习
+ */
 public class VocabularySum {
     public static void main(String[] args) {
         String str = "hello world ! Thinking in Java , Core Java Volume I-Fundamentals Java in";
