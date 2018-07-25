@@ -5,22 +5,26 @@ import java.io.File;
 public class FilePrinter {
 
     public static void main(String[] args) {
-        File file = new File("G:/新建文件夹");
-        printfFile(file);
+        File file = new File("E:\\");
+    //    printfFile(file);
         File[] files = file.listRoots();
+        for (File temp : files) {
+            printfFile(temp);
+        }
     }
 
     public static  void printfFile (File a)
     {
-        if(a != null && a.exists() && (a.isFile() || a.isDirectory()))
+        if (a == null) return;
+        if(a.isFile())
         {
             System.out.println(a.getAbsolutePath());
-        }
-        else return;
-
-        if (a.isDirectory())
+        } else if (a != null && a.isDirectory())
         {
-            for ( File b :a.listFiles())
+            File[] files = a.listFiles();
+            if(files == null)
+                return;
+            for ( File b : files)
             {
                 printfFile(b);
              }
