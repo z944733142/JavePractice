@@ -18,6 +18,7 @@ class Send implements Runnable {
     // 控制台
     private BufferedReader console;
     private DataOutputStream dos;
+    private String  name ;
     private  boolean isRunning = true;
     public Send() {
         console = new BufferedReader(new InputStreamReader(System.in));
@@ -25,20 +26,28 @@ class Send implements Runnable {
 
     @Override
     public void run() {
+        System.out.println("请输入昵称：");
+        try {
+            name = console.readLine();
+            send(name);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         while (isRunning)
         {
             try {
-                send();
+                send(getMsgFromConsole());
             } catch (IOException e) {
                 e.printStackTrace();
                 isRunning = false;
 
             }
         }
+
+
     }
 
-    public void send () throws IOException {
-        String msg = getMsgFromConsole();
+    public void send (String msg) throws IOException {
         if(msg != null && !msg.equals(""))
         {
             dos.writeUTF(msg);
@@ -56,8 +65,7 @@ class Send implements Runnable {
             dos = new DataOutputStream(Client.getOutputStream());
         } catch (IOException e) {
             isRunning = false;
-            dos.close();
-            console.close();
+
         }
     }
 }
@@ -71,7 +79,6 @@ class Receive implements Runnable {
         try {
             iS = new DataInputStream(Client.getInputStream());
         } catch (IOException e) {
-            e.printStackTrace();
             flag = false;
         }
     }
@@ -81,8 +88,6 @@ class Receive implements Runnable {
         try {
             msg = iS.readUTF();
         } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println(111);
             flag = false;
         }
         return msg;

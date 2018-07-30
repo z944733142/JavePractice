@@ -2,6 +2,7 @@ package app.xupt.Net;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.Date;
 
 public class Client {
     public static void main(String[] args) throws IOException {
