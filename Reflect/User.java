@@ -27,7 +27,7 @@ public class User {
     }
 
     public void setUname() {
-        this.uname = "高淇";
+        this.uname = "zs";
     }
 
     public User(int id, int age, String uname) {

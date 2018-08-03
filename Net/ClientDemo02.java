@@ -72,11 +72,14 @@ class Send implements Runnable {
 
 class Receive implements Runnable {
     private DataInputStream iS;
+    private DataOutputStream oS;
+    private Socket aSocket;
     private boolean flag = true;
 
 
     public Receive(Socket Client) {
         try {
+            this.aSocket = Client;
             iS = new DataInputStream(Client.getInputStream());
         } catch (IOException e) {
             flag = false;
