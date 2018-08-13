@@ -124,8 +124,8 @@ public class Caculater {
                    }
                 }
                 if ((char) c == '/' && (stack1.size() != 1)) {
-                    BigDecimal a = (BigDecimal) stack1.pop();
-                    stack1.push(( (BigDecimal)stack1.pop() ).divide(a) );
+                    Double a = ((BigDecimal) stack1.pop()).doubleValue();
+                    stack1.push (new BigDecimal( ( (Double) ( ( (BigDecimal)stack1.pop() ).doubleValue() / a)).toString()));
                 }
                 if ((char) c == '+' && (stack1.size() != 1))
                     stack1.push(( (BigDecimal)stack1.pop() ).add( (BigDecimal) stack1.pop() ));
@@ -141,7 +141,8 @@ public class Caculater {
                 }
             }
         }
-        System.out.println(stack1.pop());
+        System.out.println(stack1.peek());
+        System.out.printf("%.6s",stack1.pop());
     }
     public static boolean isNumber(char c)
     {
