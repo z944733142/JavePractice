@@ -12,6 +12,7 @@ public class Caculater {
         String item = scanner.nextLine();
         Stack stack = new Stack();
         Stack stack1 = new Stack();
+        boolean key = false;
         if(!pi(item))
         {
             System.out.println("括号不匹配");
@@ -19,16 +20,36 @@ public class Caculater {
         }
         for(int i = 0; i < item.length(); i++)
         {
+
             char c = item.charAt(i);
+            while (!isfu(c) && !isNumber(c))
+            {
+                ++i;
+                if(i < item.length())
+                c = item.charAt(i);
+                if( i == item.length())
+                    break;
+            }
+            if( i == item.length())
+                break;
             StringBuilder SB = new StringBuilder("");
+            if (c == '-' && key)
+            {
+                ++i;
+                if(i < item.length())
+                    c = item.charAt(i);
+                SB.append('-');
+            }
             while (isNumber(c) || c == '.')
             {
+                key = false;
                 SB.append(c);
                 if (++i >= item.length()) break;
                 c = item.charAt(i);
             }
             if (!SB.toString().equals("")){
                 stack.push(new BigDecimal(SB.toString()));
+
             }
             if (c == '^')
             {
@@ -59,6 +80,7 @@ public class Caculater {
             if (isfu(c))
             {
                 stack1.push(c);
+                key = true;
             }
             if(c == ')')
             {
@@ -153,6 +175,3 @@ public class Caculater {
     }
 
 }
-
-
-
