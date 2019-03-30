@@ -1,6 +1,7 @@
-package app.xupt.IO;
+package IO;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 
 public class DirCopy {
     public static void main(String[] args) throws IOException {
@@ -17,7 +18,7 @@ public class DirCopy {
         {
             out.mkdirs();
             out = new File(out,in.getName());
-            FileCopy.FileCopy(in,out);
+            app.xupt.File.FileCopy.FileCopy(in,out);
         }
         File aOut = null;
         if (in.isDirectory()) {
@@ -26,24 +27,25 @@ public class DirCopy {
         }
         if(in.listFiles() != null) {
             for (File temp : in.listFiles()) {
-                Copydir(temp, aOut);
+//                Copydir(temp, aOut);
             }
         }
     }
-    public static void Copydir(File aFile, File dest) throws IOException {
 
-        dest = new File(dest,aFile.getName());
-        if (aFile.isFile()) {
-
-            app.xupt.IO.FileCopy.FileCopy(aFile, dest);
-        }
-
-        if (aFile.isDirectory() && aFile.listFiles() != null) {
-            dest.mkdirs();
-            for (File temp : aFile.listFiles()) {
-                Copydir(temp, new File(dest, temp.getName()));
-
-            }
-        }
-    }
+//    public static void Copydir(File aFile, File dest) throws IOException {
+//
+//        dest = new File(dest,aFile.getName());
+//        if (aFile.isFile()) {
+//
+//            app.xupt.IO.FileCopy.FileCopy(aFile, dest);
+//        }
+//
+//        if (aFile.isDirectory() && aFile.listFiles() != null) {
+//            dest.mkdirs();
+//            for (File temp : aFile.listFiles()) {
+//                Copydir(temp, new File(dest, temp.getName()));
+//
+//            }
+//        }
+//    }
 }

@@ -17,9 +17,9 @@ public class DateTest {
 		
 		DateFormat a1 = new SimpleDateFormat("yyyy -- MM -- dd , HH : mm : ss : SS");
 		
-		Date a2 =1000;
+//		Date a2 =1000;
 				
-		System.out.println(a1.format(a2));
+//		System.out.println(a1.format(a2));
 		
 		System.out.println(a1.parse("2018 -- 06 -- 22 , 15 : 33 : 31 : 376"));
 		
